@@ -51,11 +51,25 @@ class Admin extends React.Component {
       });
       if (this.state.accessLevel !== 2) {
         this.getEmployeRecord(token);
+      } else {
+        this.setRating(data);
       }
     } else {
       let res = await response.json();
       alert(`ERROR!!! ${res.message}`);
     }
+  }
+  async setRating(data) {
+    this.setState({
+      employeeObj: {
+        Attendence: data.Attendence ? data.Attendence : null,
+        LateComing: data.LateComing ? data.LateComing : null,
+        Reason: data.Reason ? data.Reason : null,
+        Behaviour: data.Behaviour ? data.Behaviour : null,
+        Work: data.Work ? data.Work : null,
+        Culture: data.Culture ? data.Culture : null,
+      },
+    });
   }
   async getEmployeRecord(token) {
     const response = await fetch("/api/employee", {
@@ -77,6 +91,14 @@ class Admin extends React.Component {
       let res = await response.json();
       alert(`ERROR!!! ${res.message}`);
     }
+  }
+  stars(count) {
+    let ar = [];
+    count = count ? Math.abs(+count) : 0;
+    for (let i = 0; i < count; i++) {
+      ar.push(i);
+    }
+    return ar;
   }
   render() {
     const onClickBack = (e) => {
@@ -144,6 +166,63 @@ class Admin extends React.Component {
                   hrEmpID={this.state.employeeId}
                 />
               ))}
+              {this.state.accessLevel === 2 ? (
+                <div>
+                  <hr />
+                  <br />
+                  <div className="rating-box">
+                    <h4 className="text-rating">Attendence :</h4>
+                    {this.state.employeeObj.Attendence
+                      ? this.stars(this.state.employeeObj.Attendence).map(
+                          (e, i) => (
+                            <i key={i} className="fa fa-star star-style"></i>
+                          )
+                        )
+                      : "~Not Given~"}
+                  </div>
+                  <div className="rating-box">
+                    <h4 className="text-rating">Late Coming :</h4>
+                    {this.state.employeeObj.LateComing
+                      ? this.stars(this.state.employeeObj.LateComing).map(
+                          (e, i) => (
+                            <i
+                              key={i}
+                              className="fa fa-star star-style color-star"
+                            ></i>
+                          )
+                        )
+                      : "~Not Given~"}
+                  </div>
+                  <div className="rating-box">
+                    <h4 className="text-rating">Behaviour :</h4>
+                    {this.state.employeeObj.Behaviour
+                      ? this.stars(this.state.employeeObj.Behaviour).map(
+                          (e, i) => (
+                            <i key={i} className="fa fa-star star-style"></i>
+                          )
+                        )
+                      : "~Not Given~"}
+                  </div>
+                  <div className="rating-box">
+                    <h4 className="text-rating">Work :</h4>
+                    {this.state.employeeObj.Work
+                      ? this.stars(this.state.employeeObj.Work).map((e, i) => (
+                          <i key={i} className="fa fa-star star-style"></i>
+                        ))
+                      : "~Not Given~"}
+                  </div>
+                  <div className="rating-box">
+                    <h4 className="text-rating">Culture :</h4>
+                    {this.state.employeeObj.Culture
+                      ? this.stars(this.state.employeeObj.Culture).map(
+                          (e, i) => (
+                            <i key={i} className="fa fa-star star-style"></i>
+                          )
+                        )
+                      : "~Not Given~"}
+                  </div>
+                </div>
+              ) : null}
               <hr></hr>
             </div>
           </div>

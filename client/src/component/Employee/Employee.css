@@ -24,7 +24,7 @@
 
 .category-box {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   -webkit-box-align: center;
   align-items: center;
 }
@@ -61,4 +61,8 @@ select:disabled {
   margin-bottom: 0rem;
   margin-top: 2.5rem;
   min-width: 4rem;
+}
+.hr-name {
+  margin-left: auto;
+  color: grey;
 }

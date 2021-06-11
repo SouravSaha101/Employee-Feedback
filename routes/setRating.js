@@ -21,7 +21,7 @@ module.exports = (app) => {
         }
       );
       console.log(user);
-      res.status(200).json({ message: "HURRAH" });
+      res.status(200).json({ message: "Rating Updated" });
     } catch (err) {
       res.status(500).json({ message: err });
     }

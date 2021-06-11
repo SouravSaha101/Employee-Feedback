@@ -174,7 +174,11 @@ class Register extends React.Component {
                     onClick={this.onClickSubmit}
                   ></input>
                   <div className="reset-align">
-                    <a className="reset-button" onClick={this.onClickReset}>
+                    <a
+                      className="reset-button"
+                      onClick={this.onClickReset}
+                      href="#"
+                    >
                       Reset
                     </a>
                   </div>

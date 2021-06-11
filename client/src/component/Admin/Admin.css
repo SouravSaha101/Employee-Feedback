@@ -59,3 +59,19 @@
   width: 6%;
   min-width: 3rem;
 }
+.rating-box {
+  display: flex;
+  padding: 10px;
+  border-bottom: 2px solid #dfe1e6;
+}
+.text-rating {
+  width: 12rem;
+}
+.star-style {
+  color: #f1f734;
+  font-size: 1.7rem !important;
+  padding-right: 9px;
+}
+.color-star {
+  color: #ff443b;
+}

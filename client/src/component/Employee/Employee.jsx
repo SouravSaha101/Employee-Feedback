@@ -58,7 +58,7 @@ function Employee(props) {
     if (response.status === 200) {
       let res = await response.json();
       console.log(res);
-      alert(`HURRAH!!! ${res.message}`);
+      alert(`Sucess!!! ${res.message}`);
     } else {
       let res = await response.json();
       alert(`ERROR!!! ${res.message}`);
@@ -72,6 +72,11 @@ function Employee(props) {
       <div className="card-div">
         <h5 className="card-name">Name: </h5>
         <h5>{props.data.name}</h5>
+        {props.data.HRname && props.accessLevel === 3 && (
+          <div className="hr-name">
+            Rating by : {props.data.HRname}({props.data.HREmpId})
+          </div>
+        )}
       </div>
       <div className="card-div">
         <p className="card-emp">Employee ID:</p> <p>{props.data.employeeId}</p>
@@ -86,7 +91,13 @@ function Employee(props) {
             placeholder="Enter Attendence"
             disabled={dropdownDiable}
             onChange={onDropdownChange}
-            value={data.Attendence ? data.Attendence : props.data.Attendence}
+            value={
+              data.Attendence
+                ? data.Attendence
+                : props.data.Attendence
+                ? props.data.Attendence
+                : ""
+            }
           >
             {ar.map((data, index) => (
               <option key={index}>{data}</option>
@@ -102,7 +113,13 @@ function Employee(props) {
             placeholder="Enter Late Coming"
             disabled={dropdownDiable}
             onChange={onDropdownChange}
-            value={data.LateComing ? data.LateComing : props.data.LateComing}
+            value={
+              data.LateComing
+                ? data.LateComing
+                : props.data.LateComing
+                ? props.data.LateComing
+                : ""
+            }
           >
             {lateAr.map((data, index) => (
               <option key={index}>{data}</option>
@@ -118,7 +135,13 @@ function Employee(props) {
             placeholder="Enter Behaviour"
             disabled={dropdownDiable}
             onChange={onDropdownChange}
-            value={data.Behaviour ? data.Behaviour : props.data.Behaviour}
+            value={
+              data.Behaviour
+                ? data.Behaviour
+                : props.data.Behaviour
+                ? props.data.Behaviour
+                : ""
+            }
           >
             {ar.map((data, index) => (
               <option key={index}>{data}</option>
@@ -134,7 +157,9 @@ function Employee(props) {
             placeholder="Enter Work"
             disabled={dropdownDiable}
             onChange={onDropdownChange}
-            value={data.Work ? data.Work : props.data.Work}
+            value={
+              data.Work ? data.Work : props.data.Work ? props.data.Work : ""
+            }
           >
             {ar.map((data, index) => (
               <option key={index}>{data}</option>
@@ -150,7 +175,13 @@ function Employee(props) {
             placeholder="Enter Culture"
             disabled={dropdownDiable}
             onChange={onDropdownChange}
-            value={data.Culture ? data.Culture : props.data.Culture}
+            value={
+              data.Culture
+                ? data.Culture
+                : props.data.Culture
+                ? props.data.Culture
+                : ""
+            }
           >
             {ar.map((data, index) => (
               <option key={index}>{data}</option>
@@ -164,7 +195,7 @@ function Employee(props) {
           <textarea
             className="dropdown-style text-area"
             disabled={true}
-            value={data.Reason}
+            value={props.data.Reason ? props.data.Reason : ""}
           />
         </div>
       )}
