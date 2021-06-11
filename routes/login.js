@@ -8,6 +8,7 @@ module.exports = (app) => {
   app.post("/api/login", async (req, res) => {
     try {
       let user = await UserAuth.findOne({ email: req.body.email });
+      console.log(user);
       if (!user)
         return res.status(400).json({ message: "User is not registered" });
 
