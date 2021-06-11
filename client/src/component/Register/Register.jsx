@@ -101,7 +101,7 @@ class Register extends React.Component {
     };
     return (
       <div id="Register">
-        <Header name={"Register to recieve emails with us"} />
+        <Header name={"Company Registration"} />
         <section className="inner-section">
           <div className="section-wrapper">
             <div id="signup-form" className="account-form">
@@ -187,7 +187,7 @@ class Register extends React.Component {
                   value="Back"
                   onClick={onClickBack}
                 >
-                  <i className="fa fa-home"></i>
+                  <i class="fa fa-home"></i>
                 </button>
               </div>
             </div>

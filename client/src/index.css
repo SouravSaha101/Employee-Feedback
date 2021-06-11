@@ -89,6 +89,10 @@ code {
   cursor: not-allowed;
 }
 .back-button {
-  width: 18%;
+  width: 20%;
   background: #f1f734;
+  box-shadow: 0 2px 0 #f1f734;
+  color: #212121;
+  font-size: 1.5rem;
+  padding: 0.1rem;
 }

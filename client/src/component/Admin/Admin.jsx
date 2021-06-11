@@ -3,6 +3,7 @@ import "./Admin.css";
 import Header from "../Header/Header";
 import { Redirect, withRouter } from "react-router-dom";
 import img from "../../assests/profile.svg";
+import Employee from "../Employee/Employee";
 
 class Admin extends React.Component {
   constructor() {
@@ -48,7 +49,7 @@ class Admin extends React.Component {
         role: data.role,
         accessLevel: data.accessLevel,
       });
-      if (this.state.accessLevel === 1) {
+      if (this.state.accessLevel !== 2) {
         this.getEmployeRecord(token);
       }
     } else {
@@ -71,6 +72,7 @@ class Admin extends React.Component {
       this.setState({
         employeeArr: data,
       });
+      console.log(this.state);
     } else {
       let res = await response.json();
       alert(`ERROR!!! ${res.message}`);
@@ -113,8 +115,16 @@ class Admin extends React.Component {
                 </div>
               </div>
               <hr />
-              <h3>Enter the ratings for the employees</h3>
-
+              <h3 style={{ marginLeft: "11px" }}>
+                Enter the ratings for the employees
+              </h3>
+              {this.state.employeeArr.map((data, index) => (
+                <Employee
+                  key={data.employeeId}
+                  data={data}
+                  accessLevel={this.state.accessLevel}
+                />
+              ))}
               <hr></hr>
               <button
                 type="button"

@@ -50,7 +50,7 @@ class Credential extends React.Component {
     };
     return (
       <div id="home">
-        <Header name={"Welcome to Mailer App"} />
+        <Header name={"Employee Rating System"} />
         <section className="inner-section">
           <div className="section-wrapper">
             <div id="signup-form" className="account-form">
@@ -85,7 +85,9 @@ class Credential extends React.Component {
                   ></input>
                 </form>
                 <form>
-                  <div className="login-method-separator">OR</div>
+                  <div className="login-method-separator">
+                    <strong>OR</strong>
+                  </div>
                   <div
                     id="push"
                     className="push-button oauth-button"
@@ -93,7 +95,7 @@ class Credential extends React.Component {
                       this.props.history.push("/register");
                     }}
                   >
-                    <span className="label">Register to Mailer List</span>
+                    <span className="label">Register Yourself</span>
                   </div>
                 </form>
                 <hr></hr>

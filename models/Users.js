@@ -8,6 +8,14 @@ const usersData = new Schema({
   role: String,
   accessLevel: Number,
   phoneNo: Number,
+  Attendance: Number,
+  LateComing: Number,
+  Reason: String,
+  Behaviour: Number,
+  Work: Number,
+  Culture: Number,
+  HRname: String,
+  HREmpId: Number,
   createdOn: Date,
 });
 

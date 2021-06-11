@@ -16,7 +16,7 @@ module.exports = (app) => {
         req.body.password,
         user.password
       );
-
+      console.log(validPassword);
       if (validPassword) {
         const token = jwt.sign({ employeeId: user.employeeId }, keys.jwtToken);
         res
