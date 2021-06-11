@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 const User = mongoose.model("users");
+const verify = require("./verifyToken");
 
 module.exports = (app) => {
-  app.get("/api/employee", async (req, res) => {
+  app.get("/api/employee", verify, async (req, res) => {
     try {
       let user = await User.find({ accessLevel: 2 });
       if (!user)

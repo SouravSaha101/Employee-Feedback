@@ -2,24 +2,22 @@ import React from "react";
 import "./Admin.css";
 import Header from "../Header/Header";
 import { Redirect, withRouter } from "react-router-dom";
+import img from "../../assests/profile.svg";
 
 class Admin extends React.Component {
   constructor() {
     super();
     this.state = {
-      subject: "",
-      text: "",
-      html: "",
+      name: "",
+      employeeId: "",
+      role: "",
+      accessLevel: 2,
+      employeeObj: {},
+      employeeArr: [],
     };
   }
   onChangeSubject = (e) => {
     this.setState({ subject: e.target.value });
-  };
-  onChangeText = (e) => {
-    this.setState({ text: e.target.value });
-  };
-  onChangeHtml = (e) => {
-    this.setState({ html: e.target.value });
   };
 
   enableContinue = () => {
@@ -29,97 +27,106 @@ class Admin extends React.Component {
       return true;
     }
   };
-  render() {
-    const onClickContinue = async (e) => {
-      e.preventDefault();
-      let data = {
-        name: isAdmin,
-        html: this.state.html,
-        subject: this.state.subject,
-        text: this.state.text,
-      };
-      const response = await fetch("/api/batch-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+  componentDidMount() {
+    this.getUserData();
+  }
+  async getUserData() {
+    let token = localStorage.getItem("auth-token");
+    const response = await fetch("/api/getuser", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": token,
+      },
+    });
+    if (response.status === 200) {
+      let res = await response.json();
+      let data = res.user;
+      this.setState({
+        name: data.name,
+        employeeId: data.employeeId,
+        role: data.role,
+        accessLevel: data.accessLevel,
       });
-      if (response.status === 200) {
-        let res = await response.json();
-        alert(`SUCESS!!! ${res.message}`);
-        this.setState({ subject: "", text: "", html: "" });
-      } else {
-        let res = await response.json();
-        alert(`ERROR!!! ${res.message}`);
-        this.setState({ subject: "", text: "", html: "" });
+      if (this.state.accessLevel === 1) {
+        this.getEmployeRecord(token);
       }
-    };
+    } else {
+      let res = await response.json();
+      alert(`ERROR!!! ${res.message}`);
+    }
+  }
+  async getEmployeRecord(token) {
+    const response = await fetch("/api/employee", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": token,
+      },
+    });
+    if (response.status === 200) {
+      let res = await response.json();
+      let data = res.user;
+      console.log(data);
+      this.setState({
+        employeeArr: data,
+      });
+    } else {
+      let res = await response.json();
+      alert(`ERROR!!! ${res.message}`);
+    }
+  }
+  render() {
     const onClickBack = (e) => {
       e.preventDefault();
-      localStorage.setItem("isAdmin", "");
+      localStorage.setItem("auth-token", "");
       this.props.history.push("/");
     };
 
-    let isAdmin = localStorage.getItem("isAdmin");
+    let token = localStorage.getItem("auth-token");
 
-    if (isAdmin === "") {
+    if (token === "") {
+      alert("Authentication Error");
       return <Redirect to="/" />;
     }
     return (
       <div id="admin">
-        <Header name={"Hello Admin"} />
-        <section className="inner-section">
-          <div className="section-wrapper">
-            <div id="signup-form" className="account-form">
-              <div id="signup-password">
-                <h1>Enter the details of the email</h1>
-                <form id="signup" className="sign-up-container">
-                  <input
-                    type="text"
-                    name="subject"
-                    id="subject"
-                    className="form-field"
-                    placeholder="Enter The Subject*"
-                    value={this.state.subject}
-                    onChange={this.onChangeSubject}
-                  ></input>
-                  <input
-                    type="text"
-                    name="text"
-                    id="text"
-                    className="form-field"
-                    placeholder="Enter Text"
-                    value={this.state.text}
-                    onChange={this.onChangeText}
-                  ></input>
-                  <textarea
-                    placeholder="Enter Additional Email Content"
-                    className="form-field text-area-box"
-                    value={this.state.html}
-                    onChange={this.onChangeHtml}
-                  />
-                  <input
-                    type="submit"
-                    className="button"
-                    value="Continue"
-                    disabled={this.enableContinue()}
-                    onClick={onClickContinue}
-                  ></input>
-                </form>
-                <hr></hr>
-                <button
-                  type="button"
-                  className="button back-button"
-                  value="Logout"
-                  onClick={onClickBack}
-                >
-                  <i className="fa fa-sign-out"></i>
-                </button>
+        <Header name={"Welcome"} />
+        <div className="wrapper">
+          <div id="signup-form" className="account-form">
+            <div id="signup-password">
+              <div className="display-row">
+                <img className="img-profile" src={img} alt="thankyou"></img>
+                <div className="display-area">
+                  <p className="label">
+                    <span className="det-span"> Name:</span>
+                    {this.state.name}
+                  </p>
+                  <p className="label">
+                    <span className="det-span"> Role:</span>
+                    {this.state.role}
+                  </p>
+                  <p className="label">
+                    <span className="det-span">Employee ID:</span>
+                    {this.state.employeeId}
+                  </p>
+                </div>
               </div>
+              <hr />
+              <h3>Enter the ratings for the employees</h3>
+
+              <hr></hr>
+              <button
+                type="button"
+                className="button back-button"
+                value="Logout"
+                onClick={onClickBack}
+              >
+                <i className="fa fa-sign-out"></i>
+              </button>
             </div>
           </div>
-        </section>
+        </div>
       </div>
     );
   }

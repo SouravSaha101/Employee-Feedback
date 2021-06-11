@@ -1,3 +1,55 @@
 .text-area-box {
   min-height: 8rem;
 }
+.wrapper {
+  margin-left: auto;
+  margin-right: auto;
+}
+.img-profile {
+  height: 9rem;
+}
+.display-row {
+  display: flex;
+}
+.display-area {
+  margin-left: 5rem;
+  margin-top: 2rem;
+}
+.det-span {
+  display: inline-block;
+  width: 14rem;
+}
+.label {
+  font-size: 1.7rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1;
+}
+@media only screen and (max-width: 600px) {
+  .display-area {
+    margin-left: 2rem;
+    margin-top: 0rem;
+  }
+  .label {
+    font-size: 1.5rem;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .display-area {
+    margin-left: 2.5rem;
+    margin-top: 1rem;
+  }
+  .label {
+    font-size: 1.25rem;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .display-area {
+    margin-left: 2.5rem;
+    margin-top: 1rem;
+  }
+  .label {
+    font-size: 1rem;
+  }
+}

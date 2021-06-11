@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const employeesData = new Schema({
+  name: String,
   employeeId: Number,
   Attendance: Number,
   LateComing: Number,
@@ -9,6 +10,8 @@ const employeesData = new Schema({
   Behaviour: Number,
   Work: Number,
   Culture: Number,
+  HRname: String,
+  HREmpId: Number,
 });
 
 mongoose.model("users", employeesData);

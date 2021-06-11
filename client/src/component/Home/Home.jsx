@@ -38,7 +38,8 @@ class Credential extends React.Component {
       });
       if (response.status === 200) {
         let res = await response.json();
-        localStorage.setItem("isAdmin", this.state.email);
+        let token = await response.headers.get("auth-token");
+        localStorage.setItem("auth-token", token);
         alert(`SUCESS!!! ${res.message}`);
         this.props.history.push("/admin");
       } else {
@@ -54,7 +55,7 @@ class Credential extends React.Component {
           <div className="section-wrapper">
             <div id="signup-form" className="account-form">
               <div id="signup-password">
-                <h1>Login As Admin</h1>
+                <h1>Login</h1>
                 <form id="signup" className="sign-up-container">
                   <input
                     type="email"
