@@ -187,7 +187,7 @@ class Register extends React.Component {
                   value="Back"
                   onClick={onClickBack}
                 >
-                  <i class="fa fa-home"></i>
+                  <i className="fa fa-home"></i>
                 </button>
               </div>
             </div>

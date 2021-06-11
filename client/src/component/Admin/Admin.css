@@ -53,3 +53,9 @@
     font-size: 1rem;
   }
 }
+.logout {
+  height: 7%;
+  margin-left: auto;
+  width: 6%;
+  min-width: 3rem;
+}

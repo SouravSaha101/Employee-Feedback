@@ -113,27 +113,38 @@ class Admin extends React.Component {
                     {this.state.employeeId}
                   </p>
                 </div>
+                <button
+                  type="button"
+                  className="button back-button logout"
+                  value="Logout"
+                  onClick={onClickBack}
+                >
+                  <i className="fa fa-sign-out"></i>
+                </button>
               </div>
               <hr />
-              <h3 style={{ marginLeft: "11px" }}>
-                Enter the ratings for the employees
-              </h3>
+              {this.state.accessLevel === 3 ? (
+                <h3 style={{ marginLeft: "11px" }}>
+                  View the rating of all employees
+                </h3>
+              ) : this.state.accessLevel === 2 ? (
+                <h3 style={{ marginLeft: "11px" }}>View your rating</h3>
+              ) : (
+                <h3 style={{ marginLeft: "11px" }}>
+                  Enter the rating of all employees.
+                </h3>
+              )}
+
               {this.state.employeeArr.map((data, index) => (
                 <Employee
                   key={data.employeeId}
                   data={data}
                   accessLevel={this.state.accessLevel}
+                  hrName={this.state.name}
+                  hrEmpID={this.state.employeeId}
                 />
               ))}
               <hr></hr>
-              <button
-                type="button"
-                className="button back-button"
-                value="Logout"
-                onClick={onClickBack}
-              >
-                <i className="fa fa-sign-out"></i>
-              </button>
             </div>
           </div>
         </div>

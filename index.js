@@ -33,6 +33,7 @@ require("./routes/logout")(app);
 require("./routes/saveUser")(app);
 require("./routes/employees")(app);
 require("./routes/getUser")(app);
+require("./routes/setRating")(app);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

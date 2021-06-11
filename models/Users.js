@@ -8,7 +8,7 @@ const usersData = new Schema({
   role: String,
   accessLevel: Number,
   phoneNo: Number,
-  Attendance: Number,
+  Attendence: Number,
   LateComing: Number,
   Reason: String,
   Behaviour: Number,

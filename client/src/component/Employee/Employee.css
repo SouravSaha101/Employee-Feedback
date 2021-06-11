@@ -11,7 +11,7 @@
   margin-right: 58px;
 }
 .card-emp {
-  margin-right: 14px;
+  margin-right: 25px;
 }
 .dropdown-style {
   font-size: 14px;
@@ -52,4 +52,13 @@
 }
 select:disabled {
   background: #dfe1e6;
+}
+.save-button {
+  width: 10%;
+  height: 40px;
+  padding: 0.5rem;
+  margin-left: auto;
+  margin-bottom: 0rem;
+  margin-top: 2.5rem;
+  min-width: 4rem;
 }
