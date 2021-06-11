@@ -1,4 +1,5 @@
 module.exports = {
   mongoURI: process.env.MONGO_URI,
   cookieKey: process.env.COOKIE_KEY,
+  jwtToken: process.env.JWT_TOKEN,
 };

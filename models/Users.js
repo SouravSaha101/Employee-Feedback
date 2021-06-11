@@ -1,11 +1,14 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
+const usersData = new Schema({
   name: String,
   email: String,
-  phone: String,
+  employeeId: Number,
+  role: String,
+  accessLevel: Number,
+  phoneNo: Number,
   createdOn: Date,
 });
 
-mongoose.model("users", userSchema);
+mongoose.model("users", usersData);

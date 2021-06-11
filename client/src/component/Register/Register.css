@@ -20,3 +20,13 @@ a:hover {
   text-decoration: underline;
   cursor: pointer;
 }
+.role {
+  display: flex;
+}
+.role .form-field {
+  width: 70%;
+}
+.input-label {
+  width: 30%;
+  margin-top: 10px;
+}

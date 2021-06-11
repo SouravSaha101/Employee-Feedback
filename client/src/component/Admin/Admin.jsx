@@ -63,7 +63,7 @@ class Admin extends React.Component {
 
     let isAdmin = localStorage.getItem("isAdmin");
 
-    if (isAdmin == "") {
+    if (isAdmin === "") {
       return <Redirect to="/" />;
     }
     return (

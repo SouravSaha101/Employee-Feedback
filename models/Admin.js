@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const adminSchema = new Schema({
+const userCredentialSchema = new Schema({
   password: String,
+  employeeId: Number,
   email: String,
 });
 
-mongoose.model("admin", adminSchema);
+mongoose.model("usersAuth", userCredentialSchema);

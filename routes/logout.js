@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const Admin = mongoose.model("admin");
 
 module.exports = (app) => {
   app.get("/api/logout", async (req, res) => {
